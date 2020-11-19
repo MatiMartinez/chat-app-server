@@ -13,6 +13,10 @@ const io = socketio(server);
 
 app.use(cors());
 app.use(router);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 io.on("connect", (socket) => {
   console.log("New connection!");
